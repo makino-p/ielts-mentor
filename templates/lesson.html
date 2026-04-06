@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block title %}{{ data.lesson.title }} — IELTS Mentor{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <div style="font-size:.82rem;color:var(--text2);margin-bottom:8px">
+    <a href="/">Dashboard</a> › {{ data.module }}
+  </div>
+  <h1 class="page-title">{{ data.lesson.title }}</h1>
+  <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:8px">
+    <span class="badge badge-blue">⏱ {{ data.lesson.duration }} min</span>
+    <span class="badge badge-orange">{{ data.module }}</span>
+    {% if data.lesson.id in progress.completed_lessons %}
+    <span class="badge badge-green">✅ Completed</span>
+    {% endif %}
+  </div>
+</div>
+
+<!-- LESSON THEORY -->
+<div class="lesson-body">
+  <div id="theoryContent">{{ data.lesson.theory | replace('\n', '<br>') | replace('**', '<strong>') }}</div>
+</div>
+
+<!-- KEY POINTS -->
+<div class="card mb-16">
+  <div class="section-heading">🔑 Key Points</div>
+  <ul class="key-points">
+    {% for point in data.lesson.key_points %}
+    <li>{{ point }}</li>
+    {% endfor %}
+  </ul>
+</div>
+
+<!-- TIP BOX -->
+{% if data.lesson.tips %}
+<div class="tip-box mb-16">{{ data.lesson.tips }}</div>
+{% endif %}
+
+<!-- COMPLETE BUTTON -->
+<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:20px">
+  {% if data.lesson.id not in progress.completed_lessons %}
+  <button class="btn btn-success" id="completeBtn" data-lesson="{{ data.lesson.id }}">
+    ✅ Mark as Complete (+50 XP)
+  </button>
+  {% else %}
+  <button class="btn btn-outline" disabled>✅ Already Completed</button>
+  {% endif %}
+  <a href="/" class="btn btn-outline">← Back to Dashboard</a>
+  <a href="/exercise/grammar" class="btn btn-outline">✏️ Practice Now</a>
+</div>
+
+<div id="completeFeedback" class="hidden" style="margin-top:16px"></div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Render markdown-like bold
+document.querySelectorAll('#theoryContent').forEach(el => {
+  let html = el.innerHTML;
+  // **bold**
+  html = html.replace(/\*\*(.+?)\*\*/g, '<strong style="color:var(--text)">$1</strong>');
+  // *italic/highlight*
+  html = html.replace(/\*(.+?)\*/g, '<em style="color:var(--accent4);font-style:normal">$1</em>');
+  el.innerHTML = html;
+});
+
+const completeBtn = document.getElementById('completeBtn');
+if (completeBtn) {
+  completeBtn.addEventListener('click', async () => {
+    completeBtn.disabled = true;
+    completeBtn.textContent = '⏳ Saving...';
+    const res = await fetch('/api/complete-lesson', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ lesson_id: completeBtn.dataset.lesson })
+    });
+    const data = await res.json();
+    completeBtn.textContent = '✅ Completed!';
+    completeBtn.className = 'btn btn-outline';
+    showXP(50);
+    const fb = document.getElementById('completeFeedback');
+    fb.className = 'feedback-box correct';
+    fb.innerHTML = `
+      <div class="feedback-title">🎉 Lesson Complete!</div>
+      <div class="feedback-text">
+        +50 XP earned! | Total XP: <strong>${data.xp}</strong> |
+        Est. Band Score: <strong>${data.band}</strong> |
+        Streak: 🔥 ${data.streak} days
+      </div>
+    `;
+  });
+}
+</script>
+{% endblock %}

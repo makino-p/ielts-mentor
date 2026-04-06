@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% block title %}Vocabulary — IELTS Mentor{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1 class="page-title">📚 Vocabulary Builder</h1>
+  <p class="page-subtitle">Learn the most important IELTS words for Pre-Intermediate level</p>
+</div>
+
+<!-- STATS -->
+<div class="stats-row mb-24" style="grid-template-columns:repeat(auto-fit,minmax(120px,1fr))">
+  <div class="stat-card green">
+    <div class="stat-value" id="knownCount">{{ known_count }}</div>
+    <div class="stat-label">Words Known</div>
+  </div>
+  <div class="stat-card blue">
+    <div class="stat-value">{{ total }}</div>
+    <div class="stat-label">Total Words</div>
+  </div>
+  <div class="stat-card orange">
+    <div class="stat-value">{{ ((known_count / total * 100) | int) if total > 0 else 0 }}%</div>
+    <div class="stat-label">Complete</div>
+  </div>
+</div>
+
+{% set pct = (known_count / total * 100) | int if total > 0 else 0 %}
+<div class="card mb-24">
+  <div class="flex-between mb-8">
+    <span style="font-weight:600">Vocabulary Progress</span>
+    <span style="font-size:.82rem;color:var(--text2)">{{ known_count }}/{{ total }} words</span>
+  </div>
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill" style="width:{{ pct }}%"></div>
+  </div>
+</div>
+
+<!-- CARDS -->
+<div class="section-heading">Today's Batch ({{ words | length }} words)</div>
+
+{% if words %}
+<div class="vocab-grid">
+{% for word in words %}
+<div class="vocab-card">
+  <div class="vocab-word">{{ word.word }}</div>
+  <div class="vocab-def">{{ word.definition }}</div>
+  <div class="vocab-example">"{{ word.example }}"</div>
+  <span class="vocab-tag">{{ word.category }}</span>
+  <div class="vocab-actions">
+    <button class="vocab-known-btn" data-word="{{ word.word }}">✓ I know this</button>
+  </div>
+</div>
+{% endfor %}
+</div>
+
+<div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
+  <a href="/vocabulary" class="btn btn-outline">🔄 Next Batch</a>
+  <a href="/exercise/vocabulary" class="btn btn-primary">✏️ Vocab Quiz</a>
+</div>
+
+{% else %}
+<div class="card text-center">
+  <div style="font-size:2.5rem;margin-bottom:12px">🎉</div>
+  <div style="font-weight:700;font-size:1.1rem;margin-bottom:8px">You've learned all {{ total }} words!</div>
+  <p class="text-muted">Incredible! Try the vocabulary quiz to test yourself, or review words you've learned.</p>
+  <div style="margin-top:16px">
+    <a href="/exercise/vocabulary" class="btn btn-primary">Take Vocab Quiz</a>
+  </div>
+</div>
+{% endif %}
+
+<!-- TIPS -->
+<div class="card mt-24">
+  <div class="section-heading">💡 How to Learn Vocabulary Faster</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px">
+    <div style="padding:12px;background:var(--bg3);border-radius:10px">
+      <div style="font-weight:700;margin-bottom:6px">🃏 Spaced Repetition</div>
+      <div style="font-size:.82rem;color:var(--text2)">Review new words after 1 day, then 3 days, then 7 days. Apps like Anki use this system.</div>
+    </div>
+    <div style="padding:12px;background:var(--bg3);border-radius:10px">
+      <div style="font-weight:700;margin-bottom:6px">📖 Read in Context</div>
+      <div style="font-size:.82rem;color:var(--text2)">Always learn words in a sentence. The example sentences here come from IELTS contexts.</div>
+    </div>
+    <div style="padding:12px;background:var(--bg3);border-radius:10px">
+      <div style="font-weight:700;margin-bottom:6px">✏️ Write Your Own</div>
+      <div style="font-size:.82rem;color:var(--text2)">After learning a word, write your own sentence using it. This activates your memory strongly.</div>
+    </div>
+    <div style="padding:12px;background:var(--bg3);border-radius:10px">
+      <div style="font-weight:700;margin-bottom:6px">🗣️ Say It Aloud</div>
+      <div style="font-size:.82rem;color:var(--text2)">Pronounce each word. This helps with both vocabulary AND speaking scores.</div>
+    </div>
+  </div>
+</div>
+{% endblock %}

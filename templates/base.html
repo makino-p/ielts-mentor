@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}IELTS Mentor{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  {% block head %}{% endblock %}
+</head>
+<body>
+  <!-- NAV -->
+  <nav class="navbar">
+    <a href="/" class="nav-logo">
+      <span class="logo-icon">🎯</span>
+      <span class="logo-text">IELTS<span class="logo-accent">Mentor</span></span>
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="navLinks">
+      <a href="/" class="nav-link {% if request.path == '/' %}active{% endif %}">🏠 Dashboard</a>
+      <a href="/schedule" class="nav-link {% if request.path == '/schedule' %}active{% endif %}">📅 Schedule</a>
+      <a href="/vocabulary" class="nav-link {% if request.path == '/vocabulary' %}active{% endif %}">📚 Vocab</a>
+      <a href="/exercise/grammar" class="nav-link">✏️ Practice</a>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <main class="main-content">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- AI CHAT BUBBLE -->
+  <button class="chat-bubble" id="chatToggle" title="Ask your AI tutor">
+    <span class="chat-icon">🤖</span>
+  </button>
+
+  <!-- AI CHAT PANEL -->
+  <div class="chat-panel" id="chatPanel">
+    <div class="chat-header">
+      <span>🤖 AI Tutor</span>
+      <button class="chat-close" id="chatClose">✕</button>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+      <div class="chat-msg bot">
+        <span class="msg-avatar">🤖</span>
+        <div class="msg-bubble">Hello! I'm your IELTS tutor. Ask me anything about the exam, grammar, vocabulary, or study strategies! 🎯</div>
+      </div>
+    </div>
+    <div class="chat-input-row">
+      <input type="text" id="chatInput" class="chat-input" placeholder="Ask me anything...">
+      <button class="chat-send" id="chatSend">➤</button>
+    </div>
+  </div>
+
+  <!-- XP TOAST -->
+  <div class="xp-toast" id="xpToast"></div>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>
