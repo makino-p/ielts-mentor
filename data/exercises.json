@@ -1,0 +1,227 @@
+{
+  "grammar": [
+    {
+      "id": "g1",
+      "type": "mcq",
+      "question": "Choose the correct tense: 'The graph shows that the population _____ dramatically since 2000.'",
+      "options": ["increased", "has increased", "was increasing", "will increase"],
+      "correct_answer": "has increased",
+      "explanation": "We use Present Perfect ('has increased') because the trend started in the past and continues to the present. The clue is 'since 2000'."
+    },
+    {
+      "id": "g2",
+      "type": "mcq",
+      "question": "Complete with the correct conditional: 'If the government _____ more in education, the economy would improve.'",
+      "options": ["invests", "invested", "will invest", "would invest"],
+      "correct_answer": "invested",
+      "explanation": "This is a Second Conditional (unreal/hypothetical). The structure is: If + past simple, would + base verb. Never 'If + would'!"
+    },
+    {
+      "id": "g3",
+      "type": "mcq",
+      "question": "Which sentence uses the passive voice CORRECTLY for IELTS Writing?",
+      "options": [
+        "The data were collected in 2020.",
+        "The data was collected in 2020.",
+        "The data collected in 2020.",
+        "The data is collected in 2020."
+      ],
+      "correct_answer": "The data were collected in 2020.",
+      "explanation": "'Data' is the plural of 'datum', so it takes 'were' in formal academic writing. In IELTS, 'data were' is preferred over 'data was'."
+    },
+    {
+      "id": "g4",
+      "type": "mcq",
+      "question": "Select the correct linking word: 'The city has excellent transport links. _____, it has a high crime rate.'",
+      "options": ["Furthermore", "Therefore", "However", "As a result"],
+      "correct_answer": "However",
+      "explanation": "'However' signals contrast — the second idea is surprising or contradicts the first. 'Furthermore' adds, 'Therefore/As a result' show consequence."
+    },
+    {
+      "id": "g5",
+      "type": "mcq",
+      "question": "Which is the correct formal alternative to 'a lot of' for IELTS Writing?",
+      "options": ["many / much", "tons of", "loads of", "plenty"],
+      "correct_answer": "many / much",
+      "explanation": "'A lot of', 'lots of', 'tons of' are all informal. In IELTS Writing, use 'many' (countable), 'much' (uncountable), 'a great deal of', or 'a significant number of'."
+    },
+    {
+      "id": "g6",
+      "type": "mcq",
+      "question": "Fill in the blank: 'The number of students _____ (increase) every year since 2015.'",
+      "options": ["increases", "has increased", "increased", "is increasing"],
+      "correct_answer": "has increased",
+      "explanation": "'Since 2015' signals Present Perfect. 'The number' is singular (takes 'has'), even though students is plural. Remember: 'The number OF [plural noun]' + singular verb."
+    },
+    {
+      "id": "g7",
+      "type": "mcq",
+      "question": "Which sentence has CORRECT subject-verb agreement for IELTS?",
+      "options": [
+        "The majority of people believes this.",
+        "The majority of people believe this.",
+        "The majority of people are believing this.",
+        "The majority of people has believed this."
+      ],
+      "correct_answer": "The majority of people believe this.",
+      "explanation": "'The majority of + plural noun' takes a plural verb: 'believe', not 'believes'. Compare: 'The majority IS important' (majority as a concept = singular)."
+    },
+    {
+      "id": "g8",
+      "type": "mcq",
+      "question": "Which word correctly completes this IELTS Writing Task 1 sentence: 'Sales _____ at 500 units in March before declining.'",
+      "options": ["peaked", "peaking", "peak", "have peaked"],
+      "correct_answer": "peaked",
+      "explanation": "'Peaked' (Past Simple) is correct when describing a specific point on a graph — like March. Use Present Perfect ('have peaked') if no specific time is mentioned."
+    }
+  ],
+  "listening": [
+    {
+      "id": "li1",
+      "type": "mcq",
+      "audio_url": null,
+      "transcript": "Receptionist: 'Good morning, can I help you?' Customer: 'Yes, I'd like to book a room for two nights, from the 15th to the 17th of June.' Receptionist: 'Certainly. A double room is £85 per night, or a single is £60.' Customer: 'I'll take the double room please.'",
+      "question": "How much will the customer pay in total for the stay?",
+      "options": ["£60", "£85", "£120", "£170"],
+      "correct_answer": "£170",
+      "explanation": "The customer booked a double room (£85/night) for 2 nights (15th to 17th = 2 nights). £85 × 2 = £170. Always check: number of nights × price per night!"
+    },
+    {
+      "id": "li2",
+      "type": "mcq",
+      "transcript": "Tour guide: 'The museum opens at 9am Monday to Saturday. On Sundays, we open two hours later. We close at 6pm every day except Friday, when we stay open until 9pm for our special evening events.'",
+      "question": "What time does the museum open on Sundays?",
+      "options": ["9am", "10am", "11am", "12pm"],
+      "correct_answer": "11am",
+      "explanation": "The museum opens at 9am Mon-Sat. 'Two hours later' on Sunday = 9am + 2 hours = 11am. This tests your ability to calculate from spoken information."
+    },
+    {
+      "id": "li3",
+      "type": "mcq",
+      "transcript": "Lecturer: 'Contrary to popular belief, studies show that students who study in shorter sessions of 25 minutes perform better than those who study for hours without breaks. The Pomodoro Technique, named after a tomato-shaped timer, uses exactly this principle.'",
+      "question": "According to the lecturer, what is the recommended study session length?",
+      "options": ["15 minutes", "25 minutes", "45 minutes", "60 minutes"],
+      "correct_answer": "25 minutes",
+      "explanation": "The lecturer specifically says '25 minutes'. Notice 'Contrary to popular belief' — a signal that what follows contradicts what most people think."
+    },
+    {
+      "id": "li4",
+      "type": "mcq",
+      "transcript": "Student A: 'For the assignment, should we focus on the economic impacts or the environmental ones?' Student B: 'The professor said we need to cover both. But I think we should spend more time on the environmental side — that's worth 60% of the marks.' Student A: 'Really? I thought it was 40%. Let me check the rubric again.'",
+      "question": "What percentage of marks is the environmental section worth, according to Student B?",
+      "options": ["40%", "50%", "60%", "It is not stated"],
+      "correct_answer": "60%",
+      "explanation": "Student B says 'the environmental side — that's worth 60%'. Note: Student A THINKS it's 40%, but the question asks what Student B says."
+    }
+  ],
+  "reading": [
+    {
+      "id": "r1",
+      "type": "tfng",
+      "passage": "The Great Barrier Reef, located off the coast of Queensland, Australia, is the world's largest coral reef system, stretching over 2,300 kilometres. It is composed of over 2,900 individual reefs and 900 islands. The reef supports an extraordinary variety of marine life, including over 1,500 species of fish and 4,000 species of mollusc. In recent decades, rising ocean temperatures linked to climate change have caused coral bleaching events, threatening the reef's long-term survival. Scientists estimate that over 50% of the reef's coral has been lost since 1995.",
+      "question": "The Great Barrier Reef has lost more than half of its coral since the 1990s.",
+      "correct_answer": "True",
+      "explanation": "The passage states 'over 50% of the reef's coral has been lost since 1995.' 1995 is in the 1990s, and 'over 50%' means 'more than half'. This is TRUE."
+    },
+    {
+      "id": "r2",
+      "type": "tfng",
+      "passage": "The Great Barrier Reef, located off the coast of Queensland, Australia, is the world's largest coral reef system, stretching over 2,300 kilometres. It is composed of over 2,900 individual reefs and 900 islands. The reef supports an extraordinary variety of marine life, including over 1,500 species of fish and 4,000 species of mollusc.",
+      "question": "The Great Barrier Reef is the most biodiverse marine ecosystem in the world.",
+      "correct_answer": "Not Given",
+      "explanation": "The passage says the reef is 'the world's largest coral reef system' and mentions biodiversity. But it NEVER says it is the 'most biodiverse'. That comparison is NOT in the text. → NOT GIVEN."
+    },
+    {
+      "id": "r3",
+      "type": "tfng",
+      "passage": "Remote work, also known as telecommuting, has grown significantly since the early 2000s. However, it was the COVID-19 pandemic of 2020 that caused a dramatic and sudden shift, forcing millions of workers worldwide to work from home. Many businesses that initially considered remote work to be a temporary solution have since made it a permanent option, citing increased productivity and reduced office costs.",
+      "question": "Remote work became common only because of the COVID-19 pandemic.",
+      "correct_answer": "False",
+      "explanation": "FALSE because the passage says remote work 'has grown significantly since the early 2000s' — it existed and was growing BEFORE COVID. COVID caused a 'dramatic and sudden shift' but wasn't the starting point."
+    },
+    {
+      "id": "r4",
+      "type": "mcq",
+      "passage": "Urban farming, the practice of growing food in cities, has gained momentum as a solution to food insecurity in densely populated areas. Rooftop gardens, vertical farms, and community plots have transformed unused urban spaces into productive agricultural land. Studies have shown that urban farms can produce up to 10 times more food per square metre than traditional farms, largely because of controlled growing conditions and innovative techniques such as hydroponics.",
+      "question": "According to the passage, why can urban farms produce more food per square metre than traditional farms?",
+      "options": [
+        "Because they use more fertilizer",
+        "Because of controlled conditions and innovative techniques",
+        "Because city workers are more efficient",
+        "Because urban land is more fertile"
+      ],
+      "correct_answer": "Because of controlled conditions and innovative techniques",
+      "explanation": "The passage directly states: 'largely because of controlled growing conditions and innovative techniques such as hydroponics.' This is a direct answer — the key is scanning for the reason (signal word: 'because')."
+    }
+  ],
+  "writing": [
+    {
+      "id": "w1",
+      "type": "writing",
+      "skill": "Task 2",
+      "correct_answer": "Some people believe that the best way to reduce crime is to give longer prison sentences. To what extent do you agree or disagree? Give reasons and examples from your own experience.",
+      "prompt": "Write an IELTS Task 2 essay (at least 150 words) on the following topic:",
+      "tips": "Structure: Introduction (2-3 sentences) → Body 1 (agree/disagree with reason + example) → Body 2 (alternative view or second point) → Conclusion. Use formal language and linking words!"
+    },
+    {
+      "id": "w2",
+      "type": "writing",
+      "skill": "Task 2",
+      "correct_answer": "Many people believe that social media has a negative impact on young people's mental health. Others argue that it has a positive effect. Discuss both views and give your own opinion.",
+      "prompt": "Write an IELTS Task 2 essay (at least 150 words) on the following topic:",
+      "tips": "For 'Discuss both views' essays: Paragraph 1 = View A + reasons. Paragraph 2 = View B + reasons. Conclusion = your opinion. Balance both sides before giving your view!"
+    },
+    {
+      "id": "w3",
+      "type": "writing",
+      "skill": "Task 1",
+      "correct_answer": "The bar chart below shows the percentage of people using the internet in three countries (UK, China, USA) in 2000, 2010, and 2020.",
+      "prompt": "Describe this Task 1 graph prompt in your own words (at least 100 words). Imagine the UK went from 30% to 75% to 95%, China from 3% to 34% to 73%, USA from 50% to 72% to 90%.",
+      "tips": "Structure: Intro (paraphrase) → Overview (biggest trends: all countries increased; UK always highest) → Body 1 (UK and USA details) → Body 2 (China had biggest growth). Include specific numbers!"
+    }
+  ],
+  "speaking": [
+    {
+      "id": "sp1",
+      "type": "writing",
+      "skill": "Speaking Part 1",
+      "correct_answer": "Describe your hometown or the city where you live.",
+      "prompt": "Write out what you would SAY in response to this Speaking Part 1 question (aim for 4-5 sentences using AREA technique):",
+      "tips": "AREA: Answer + Reason + Example + Alternative/Add more. Start with a clear answer, then explain WHY, give a SPECIFIC example, then add more detail."
+    },
+    {
+      "id": "sp2",
+      "type": "writing",
+      "skill": "Speaking Part 2",
+      "correct_answer": "Describe a time when you helped someone. You should say: who you helped, what you did, why you helped them, and how you felt afterwards.",
+      "prompt": "Write out a 1-2 minute spoken response (as if speaking aloud) for this Part 2 task card:",
+      "tips": "Use your 1-minute prep to make notes on: WHO (friend/family), WHAT (specific action), WHY (reason), HOW YOU FELT (positive emotions). Speak for at least 1 minute without stopping!"
+    }
+  ],
+  "vocabulary": [
+    {
+      "id": "v1",
+      "type": "mcq",
+      "question": "What does 'significant' mean in the sentence: 'There was a significant increase in sales.'?",
+      "options": ["small", "important/large", "sudden", "expected"],
+      "correct_answer": "important/large",
+      "explanation": "'Significant' means important or large enough to be noticed. It's very common in IELTS Writing and Reading. Synonyms: considerable, substantial, notable, marked."
+    },
+    {
+      "id": "v2",
+      "type": "mcq",
+      "question": "Which word means 'to go down steadily' in IELTS graph writing?",
+      "options": ["surge", "fluctuate", "decline", "plateau"],
+      "correct_answer": "decline",
+      "explanation": "'Decline' means to go down steadily. 'Surge' = sudden rise. 'Fluctuate' = go up and down irregularly. 'Plateau' = stay at the same level. All are useful for Task 1!"
+    },
+    {
+      "id": "v3",
+      "type": "mcq",
+      "question": "What is the formal IELTS word for 'kids'?",
+      "options": ["babies", "children", "youngsters", "teens"],
+      "correct_answer": "children",
+      "explanation": "'Children' is the formal, correct word. 'Kids' is informal and should NOT be used in IELTS Writing. Other formal alternatives: 'young people', 'adolescents' (teens), 'infants' (babies)."
+    }
+  ]
+}

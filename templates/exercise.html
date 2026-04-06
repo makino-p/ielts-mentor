@@ -1,0 +1,207 @@
+{% extends "base.html" %}
+{% block title %}Practice — IELTS Mentor{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <div style="font-size:.82rem;color:var(--text2);margin-bottom:8px">
+    <a href="/">Dashboard</a> › Practice
+  </div>
+  <h1 class="page-title">✏️ Practice Exercises</h1>
+</div>
+
+<!-- SKILL TABS -->
+<div class="skill-tabs">
+  <a href="/exercise/grammar"    class="skill-tab {% if skill=='grammar' %}active{% endif %}">📝 Grammar</a>
+  <a href="/exercise/listening"  class="skill-tab {% if skill=='listening' %}active{% endif %}">🎧 Listening</a>
+  <a href="/exercise/reading"    class="skill-tab {% if skill=='reading' %}active{% endif %}">📖 Reading</a>
+  <a href="/exercise/writing"    class="skill-tab {% if skill=='writing' %}active{% endif %}">✍️ Writing</a>
+  <a href="/exercise/vocabulary" class="skill-tab {% if skill=='vocabulary' %}active{% endif %}">💬 Vocabulary</a>
+</div>
+
+{% if exercise %}
+<div class="card mb-16">
+  <!-- QUESTION HEADER -->
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+    <span class="badge badge-orange">{{ skill | title }}</span>
+    <span class="badge badge-blue">+10 XP per correct answer</span>
+  </div>
+
+  {% if exercise.transcript %}
+  <!-- READING PASSAGE / TRANSCRIPT -->
+  <div style="background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:18px;font-size:.875rem;line-height:1.7;color:var(--text2)">
+    <div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text2);margin-bottom:10px;font-weight:700">
+      {% if skill == 'listening' %}🎧 Audio Transcript (Imagine you heard this){% else %}📄 Reading Passage{% endif %}
+    </div>
+    <p style="color:var(--text)">{{ exercise.transcript or exercise.passage }}</p>
+  </div>
+  {% endif %}
+
+  {% if exercise.passage and not exercise.transcript %}
+  <div style="background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:18px;font-size:.875rem;line-height:1.7">
+    <div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text2);margin-bottom:10px;font-weight:700">📄 Reading Passage</div>
+    <p style="color:var(--text)">{{ exercise.passage }}</p>
+  </div>
+  {% endif %}
+
+  <!-- QUESTION -->
+  <div style="font-size:1rem;font-weight:600;margin-bottom:16px;line-height:1.5">
+    {% if exercise.type == 'writing' %}
+    <div style="font-size:.82rem;color:var(--text2);margin-bottom:8px">{{ exercise.prompt }}</div>
+    <div style="color:var(--accent4);font-style:italic">{{ exercise.correct_answer }}</div>
+    {% else %}
+    {{ exercise.question }}
+    {% endif %}
+  </div>
+
+  {% if exercise.type == 'mcq' %}
+  <!-- MCQ OPTIONS -->
+  <div class="options-grid" id="optionsGrid">
+    {% for option in exercise.options %}
+    <button class="option-btn"
+      data-answer="{{ option }}"
+      data-correct="{{ exercise.correct_answer }}"
+      data-explanation="{{ exercise.explanation }}"
+      data-id="{{ exercise.id }}"
+      data-skill="{{ skill }}"
+      onclick="checkMCQ(this)">
+      {{ option }}
+    </button>
+    {% endfor %}
+  </div>
+
+  {% elif exercise.type == 'tfng' %}
+  <!-- TRUE / FALSE / NOT GIVEN -->
+  <div class="options-grid" id="optionsGrid">
+    {% for option in ['True', 'False', 'Not Given'] %}
+    <button class="option-btn"
+      data-answer="{{ option }}"
+      data-correct="{{ exercise.correct_answer }}"
+      data-explanation="{{ exercise.explanation }}"
+      data-id="{{ exercise.id }}"
+      data-skill="{{ skill }}"
+      onclick="checkMCQ(this)">
+      {% if option == 'True' %}✅{% elif option == 'False' %}❌{% else %}❓{% endif %}
+      {{ option }}
+    </button>
+    {% endfor %}
+  </div>
+
+  {% elif exercise.type == 'writing' %}
+  <!-- WRITING TASK -->
+  {% if exercise.tips %}
+  <div class="tip-box mb-16">{{ exercise.tips }}</div>
+  {% endif %}
+  <textarea class="writing-area" id="writingAnswer"
+    data-min-words="{{ 150 if exercise.skill == 'Task 1' else 150 }}"
+    placeholder="Write your answer here... (aim for at least 150 words)"></textarea>
+  <div class="word-count">0 words</div>
+  <button class="btn btn-primary mt-16" onclick="submitWriting('{{ exercise.id }}', '{{ exercise.skill }}', `{{ exercise.correct_answer | replace("'", "\\'") }}`)">
+    🤖 Submit for AI Feedback
+  </button>
+  {% endif %}
+
+  <!-- FEEDBACK AREA -->
+  <div id="feedbackArea" class="hidden"></div>
+
+  <!-- NEXT EXERCISE -->
+  <div id="nextRow" class="hidden" style="margin-top:16px">
+    <a href="/exercise/{{ skill }}" class="btn btn-outline">Next Question →</a>
+    <a href="/" class="btn btn-outline">🏠 Dashboard</a>
+  </div>
+</div>
+
+<!-- STATS BAR -->
+<div class="card">
+  <div style="display:flex;gap:20px;flex-wrap:wrap">
+    <div><span style="color:var(--text2);font-size:.82rem">Your XP:</span> <strong>{{ progress.total_xp }}</strong></div>
+    <div><span style="color:var(--text2);font-size:.82rem">Lessons done:</span> <strong>{{ progress.completed_lessons | length }}</strong></div>
+    <div><span style="color:var(--text2);font-size:.82rem">Est. Band:</span> <strong>{{ progress.band_estimate }}</strong></div>
+  </div>
+</div>
+
+{% else %}
+<div class="card text-center">
+  <div style="font-size:2.5rem;margin-bottom:12px">🎉</div>
+  <div style="font-weight:700;font-size:1.1rem;margin-bottom:8px">No exercises available for this skill yet!</div>
+  <p class="text-muted">We're adding more exercises regularly. Try another skill or check back soon.</p>
+  <div style="margin-top:16px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+    <a href="/exercise/grammar" class="btn btn-primary">Try Grammar</a>
+    <a href="/" class="btn btn-outline">Dashboard</a>
+  </div>
+</div>
+{% endif %}
+{% endblock %}
+
+{% block scripts %}
+<script>
+async function checkMCQ(btn) {
+  document.querySelectorAll('.option-btn').forEach(b => b.disabled = true);
+  const answer   = btn.dataset.answer;
+  const correct  = btn.dataset.correct;
+  const expl     = btn.dataset.explanation;
+  const isCorrect = answer.toLowerCase() === correct.toLowerCase();
+
+  btn.classList.add(isCorrect ? 'correct' : 'wrong');
+  if (!isCorrect) {
+    document.querySelectorAll('.option-btn').forEach(b => {
+      if (b.dataset.answer.toLowerCase() === correct.toLowerCase()) b.classList.add('correct');
+    });
+  }
+
+  await fetch('/api/check-answer', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      skill: btn.dataset.skill,
+      exercise_id: btn.dataset.id,
+      answer, correct_answer: correct,
+      type: 'mcq',
+      explanation: expl
+    })
+  });
+
+  const fb = document.getElementById('feedbackArea');
+  fb.className = `feedback-box ${isCorrect ? 'correct' : 'wrong'}`;
+  fb.innerHTML = `
+    <div class="feedback-title">${isCorrect ? '✅ Correct!' : '❌ Not quite!'}</div>
+    <div class="feedback-text">
+      ${!isCorrect ? `<strong>Correct answer: ${correct}</strong><br>` : ''}
+      ${expl}
+    </div>
+  `;
+  if (isCorrect) showXP(10);
+  document.getElementById('nextRow').classList.remove('hidden');
+}
+
+async function submitWriting(id, skill, prompt) {
+  const answer = document.getElementById('writingAnswer').value.trim();
+  if (answer.split(/\s+/).length < 30) {
+    alert('Please write at least 30 words before submitting!');
+    return;
+  }
+  const btn = event.target;
+  btn.disabled = true;
+  btn.textContent = '🤖 AI is reading your response...';
+
+  const fb = document.getElementById('feedbackArea');
+  fb.className = 'feedback-box info';
+  fb.innerHTML = '<div class="feedback-title">⏳ Analysing your writing...</div><div class="feedback-text">Please wait a moment while your IELTS tutor reviews your response.</div>';
+
+  const res = await fetch('/api/check-answer', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ skill, exercise_id: id, answer, correct_answer: prompt, type: 'writing' })
+  });
+  const data = await res.json();
+
+  fb.className = 'feedback-box info';
+  fb.innerHTML = `
+    <div class="feedback-title">🤖 AI Tutor Feedback — Estimated Band: ${data.score}</div>
+    <div class="feedback-text" style="white-space:pre-line">${data.feedback}</div>
+  `;
+  btn.textContent = '✅ Submitted!';
+  showXP(data.xp_earned || 30);
+  document.getElementById('nextRow').classList.remove('hidden');
+}
+</script>
+{% endblock %}
